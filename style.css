@@ -76,6 +76,9 @@ margin-right: -4px;
 border-radius: 10px;
 cursor: pointer;
 }
+.button:hover{
+    background: #3D4153;
+}
 .blink-me {
 color: #E0B612;
 }
