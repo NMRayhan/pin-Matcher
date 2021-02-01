@@ -47,6 +47,12 @@ document.getElementById('digit-container').addEventListener('click', function (e
     document.getElementById('backSpace').innerText = ''
 })
 
+// auto Refresh Function 
+function AutoRefresh() {
+    window.setTimeout(function () {
+        window.location.reload();
+    }, 100);
+}
 // pin match functon 
 function pinMatch() {
     let generatePin = document.getElementById('pin-Generate-Input').value;
@@ -57,20 +63,26 @@ function pinMatch() {
     var countNumber = parseInt(countInput);
 
 
-    if (generatePinNumber === pinNumber) {
-        notify[0].style.display = 'none'
-        notify[1].style.display = 'block'
+    if (generatePinNumber > 0, pinNumber > 0) {
+        if (generatePinNumber === pinNumber) {
+            notify[0].style.display = 'none'
+            notify[1].style.display = 'block'
+        } else {
+            notify[1].style.display = 'none'
+            notify[0].style.display = 'block'
+            countNumber = countNumber - 1;
+            if (countNumber > 0) {
+                document.getElementById('try').innerText = countNumber;
+            }
+            else {
+                AutoRefresh()
+            }
+        }
+    } else if (isNaN(generatePinNumber)) {
+        alert("Please Click The 'Generate Pin' Button And Match The Pin");
+        AutoRefresh()
     } else {
-        notify[1].style.display = 'none'
-        notify[0].style.display = 'block'
-        countNumber = countNumber - 1;
-        if (countNumber > 0) {
-            document.getElementById('try').innerText = countNumber;
-        }
-        else {
-            window.setTimeout(function () {
-                window.location.reload();
-            }, 100);
-        }
+        alert("Please Enter Maximum 4 Length Number For Opening Door");
+        AutoRefresh()
     }
 }
